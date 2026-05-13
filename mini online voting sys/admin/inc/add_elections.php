@@ -76,7 +76,7 @@
                 }else{
         ?>
                     <tr>
-                            <td colspan="7"> No any election  is added yet. </td>
+                            <td colspan="7"> No any election is added yet. </td>
                     </tr>        
         
         <?php
@@ -127,3 +127,4 @@
 
         }
         ?>
+        
