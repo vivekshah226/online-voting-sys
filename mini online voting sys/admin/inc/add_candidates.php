@@ -165,7 +165,7 @@ if(isset($_POST['addCandidateBtn']))
     if ($image_size <= 2097152) {
         if (in_array($candidate_photo_type, $allowed_types)) {
             if (move_uploaded_file($candidate_photo_tmp_name, $candidate_photo)) {
-                mysqli_query($db, "INSERT INTO elections(election_id, candidate_name, candidate_details, candidate_photo,
+                mysqli_query($db, "INSERT INTO candidate_details(election_id, candidate_name, candidate_details, candidate_photo,
                 inserted_by, inserted_on) VALUES('" . $election_id . "','" . $candidate_name . "','" . 
                 $candidate_details . "','" . $candidate_photo . "','" . $status . "','" . $inserted_by . "','" . $inserted_on . "')") or
                 die(mysqli_error($db));
