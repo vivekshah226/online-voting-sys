@@ -1,15 +1,15 @@
-<? php
-	session_start();
-	require_once("config.php");
+<?php
+session_start();
+require_once("config.php");
 
-	if($_SESSION['key'] != "AdminKey")
-	{
-		echo "<script> location.assign('logout.php'); </script>";
-		die;
-	}
+if(!isset($_SESSION['key']) || $_SESSION['key'] != "AdminKey")
+{
+    echo "<script> location.assign('logout.php'); </script>";
+    die;
+}
 ?>
 
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -21,11 +21,11 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row bg-black text-white">
-            <div class="Col-1 text-center">
-                <img src="../assets/img/logo.png" alt="Logo" width="80px"/>
-            </div>
-            <div class="Col-11 my-auto">
-                <h3>Online Voting System  <small>Welcome <?php echo $_SESSION['username']; ?> </small></h3>
-            </div>
-        </div>
+		<div class="row bg-black text-white align-items-center py-2">
+				<div class="col-1 text-center">
+					<img src="../assets/images/logo.png" alt="Logo" width="80"/>
+				</div>
+				<div class="col-11 my-auto">
+					<h3 class="mb-0">Online Voting System  <small class="text-white-50">Welcome <?php echo htmlspecialchars($_SESSION['username']); ?> </small></h3>
+				</div>
+			</div>

@@ -1,60 +1,67 @@
+<div class="container my-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2>Admin Dashboard</h2>
+            <p class="lead mb-0">Welcome to the admin dashboard. Use the navigation above to manage elections and candidates.</p>
+        </div>
+    </div>
 
-<div class="row my-3">
-    <div class="col-12">
-        <h3>Elections</h3>
-        <table class="table">
-        <thead>
-            <tr>
-            <th scope="col">S.No</th>
-            <th scope="col">Election Name</th>
-            <th scope="col"># Candidates</th>
-            <th scope="col">Starting Date</th>
-            <th scope="col">Ending Date</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                $fetchingData = mysqli_query($db, "SELECT * FROM elections") or die(mysqli_error($db));
-                $isAnyElectionAdded = mysqli_num_rows ($fetchingData);
-
-                if($isAnyElectionAdded > 0)
-                {
-
-                    $sno = 1;
-                    while($row = mysqli_fetch_assoc($fetchingData))
-                    { 
-                        $election_id = $row['id'];     
-            ?>            
-                        <tr>
-                            <td> <?php echo $sno++; ?></td>
-                            <td> <?php echo $row['election_topic']; ?></td>
-                            <td> <?php echo $row['no_of_candidates']; ?></td>
-                            <td> <?php echo $row['starting_date']; ?></td>
-                            <td> <?php echo $row['ending_date']; ?></td>
-                            <td> <?php echo $row['status']; ?></td>
-                            <td>
-                                <a href="index.php?viewResult=<?php echo $election_id; ?>"class="btn btn-sm btn-success">View Result </a>
-                            </td>
-                        </tr>  
-
-            <?php
-                    }
-                }else{
-        ?>
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-3">Elections</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                <thead>
                     <tr>
-                            <td colspan="7"> No any election  is added yet. </td>
-                    </tr>        
-        
-        <?php
+                    <th scope="col">S.No</th>
+                    <th scope="col">Election Name</th>
+                    <th scope="col">Candidates</th>
+                    <th scope="col">Starting Date</th>
+                    <th scope="col">Ending Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $fetchingData = mysqli_query($db, "SELECT * FROM elections") or die(mysqli_error($db));
+                        $isAnyElectionAdded = mysqli_num_rows($fetchingData);
 
-                }
+                        if($isAnyElectionAdded > 0)
+                        {
+
+                            $sno = 1;
+                            while($row = mysqli_fetch_assoc($fetchingData))
+                            { 
+                                $election_id = $row['id'];     
+                    ?>            
+                            <tr>
+                                <td><?php echo $sno++; ?></td>
+                                <td><?php echo $row['election_topic']; ?></td>
+                                <td><?php echo $row['no_of_candidates']; ?></td>
+                                <td><?php echo $row['starting_date']; ?></td>
+                                <td><?php echo $row['ending_date']; ?></td>
+                                <td><?php echo $row['status']; ?></td>
+                                <td>
+                                    <a href="index.php?viewResult=<?php echo $election_id; ?>" class="btn btn-sm btn-success">View Result</a>
+                                </td>
+                            </tr>  
+
+                    <?php
+                            }
+                        }else{
             ?>
-        </tbody>
-    </table>
+                        <tr>
+                                <td colspan="7">No elections have been added yet.</td>
+                        </tr>        
+	        
+            <?php
+
+                        }
+                    ?>
+                </tbody>
+            </table>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
