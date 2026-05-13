@@ -1,6 +1,22 @@
 <?php
     require_once("inc/header.php") ;
+    require_once("inc/navigation.php") ;
 
+
+
+
+    if (isset($_GET['homepage'])) 
+    {
+        require_once("inc/homepage.php") ;
+    }
+    else if(isset($_GET['addElectionPage']))
+    {
+        require_once("inc/add_elections.php") ;
+
+    }else if (isset($_GET['addCandidatePage'])) 
+    {
+        requre_once("inc/add_candidate.php") ;
+    }
 ?>  
 
 

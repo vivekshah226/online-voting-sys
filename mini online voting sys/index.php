@@ -215,7 +215,7 @@
 
 			if($data['user_role'] == "Admin"){
 				?>
-					<script> location.assign("admin/index.php"); </script>
+					<script> location.assign("admin/index.php?homepage=1"); </script>
 				<?php
 
 			}else{
