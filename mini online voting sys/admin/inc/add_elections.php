@@ -5,7 +5,18 @@
         <div class="alert alert-success my-3" role="alert">
         Election has been added successfully.
         </div>
+<? php
+    }else if(isset($_GET['delete_id']))
+    {
+        $d_id = $_GET['delete_id'];
+        mysqli_query($db, "DELETE FROM elections WHERE id = '". $d_id ."'") OR die(mysqli_error($db));
+?>
+        <div class="alert alert-danger my-3" role="alert">
+            Election has been deleted successfully!
+        </div>
+
 <?php
+
     }
 ?>    
 
@@ -56,7 +67,8 @@
 
                     $sno = 1;
                     while($row = mysqli_fetch_assoc($fetchingData))
-                    {        
+                    { 
+                        $election_id = $row ['id'];       
             ?>            
                         <tr>
                             <td> <?php echo $sno++; ?></td>
@@ -67,7 +79,7 @@
                             <td> <?php echo $row['status']; ?></td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-warning"> Edit </a>
-                                <a href="#" class="btn btn-sm btn-danger"> Delete </a>
+                                <button class="btn btn-sm btn-danger" onclick = "DeleteData(<?php echo $election_id; ?>)"> Delete </button>
                             </td>
                         </tr>  
 
@@ -87,6 +99,20 @@
     </table>
     </div>
 </div>
+<script>
+    const DeleteData = (e_id) =>
+    {
+
+        let c = confirm("Are you really want to delete it?");
+
+        if(c == true)
+        {    
+
+            location.assign("index.php?addElectionPage=1&delete_id=" + e_id);
+        }
+    } 
+
+</script>
 
 
 

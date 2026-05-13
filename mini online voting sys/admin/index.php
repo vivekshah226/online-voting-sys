@@ -15,7 +15,10 @@
 
     {
         require_once("inc/add_candidates.php");
-    }    
+    }else if (isset($_GET['viewResult']))
+     {
+        require_once("inc/viewResults.php");
+    }
 
 ?>  
 
