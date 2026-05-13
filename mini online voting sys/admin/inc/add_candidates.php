@@ -44,11 +44,20 @@
                         {
                             while($row = mysqli_fetch_assoc($fetchingElections)) 
                             {
-                                $election_id = $row['election_id'];
-                                $election_name = $row['election_name'];
+                                $election_id = $row['id'];
+                                $election_name = $row['election_topic'];
+                                $allowed_candidates = $row['no_of_candidates'];
+
+                                //Now checking whether any candidate is added for this election or not
+                                $fetchingCandidate = mysqli_query($db, "SELECT * FROM candidate_details WHERE election_id = '" . $election_id . "'") OR DIE(mysqli_error($db));
+                                $added_candidates = mysqli_num_rows($fetchingCandidate);
+                                if($added_candidates < $allowed_candidates)
+                                {
+
                     ?>
                         <option value="<?php echo $election_id; ?>"><?php echo $election_name; ?></option>
                     <?php
+                                }
                             }
                         }else{
                     ?>
@@ -96,15 +105,18 @@
                     while($row = mysqli_fetch_assoc($fetchingData))
                     {    
                         $election_id = $row['election_id'];
+                        $fetchingElectionName = mysqli_query($db, "SELECT * FROM elections WHERE election_id = '" . $election_id . "'") or die(mysqli_error($db));
+                        $execFetchingElectionNameQuery = mysqli_fetch_assoc($fetchingElectionName);
+                        $election_name = $execFetchingElectionNameQuery['election_topic'];
+
                         $candidate_photo = $row['candidate_photo'];    
             ?>            
                         <tr>
                             <td> <?php echo $sno++; ?></td>
-                            <td> <img src="<?php echo $candidate_photo; ?></td>
+                            <td> <img src="<?php echo $candidate_photo;?>" class="candidate_photo"/>  </td>
                             <td> <?php echo $row['candidate_name']; ?></td>
-                            <td> <?php echo $row['starting_date']; ?></td>
-                            <td> <?php echo $row['ending_date']; ?></td>
-                            <td> <?php echo $row['status']; ?></td>
+                            <td> <?php echo $row['candidate_details']; ?></td>
+                            <td> <?php echo $election_name; ?></td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-warning"> Edit </a>
                                 <a href="#" class="btn btn-sm btn-danger"> Delete </a>
