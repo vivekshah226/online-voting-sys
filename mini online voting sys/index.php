@@ -147,7 +147,7 @@
 
 <?php
 
- require_once("inc/config.php");
+ require_once("admin/inc/config.php");
 
  if(isset($_POST['sign_up_btn'])){
 
