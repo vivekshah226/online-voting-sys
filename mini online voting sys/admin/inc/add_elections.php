@@ -20,5 +20,21 @@
 
     <div class="col-8">
         <h3>Upcoming Elections</h3>
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Election Name</th>
+            <th scope="col"># Candidates</th>
+            <th scope="col">Starting Date</th>
+            <th scope="col">Ending Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
     </div>
 </div>    
