@@ -259,15 +259,20 @@
 			session_start();
 			$_SESSION['user_role'] = $data['user_role'];
 			$_SESSION['username'] = $data['username'];
+			$_SESSION['user_id'] = $data['id'];
+
 
 			if($data['user_role'] == "Admin"){
+
+			$_SESSION['key'] = "AdminKey";
 				?>
 					<script> location.assign("admin/index.php?homepage=1"); </script>
 				<?php
 
 			}else{
+			$_SESSION['key'] = "VoterKey";
 				?>
-					<script> location.assign("voter/index.php"); </script>
+					<script> location.assign("voters/index.php"); </script>
 				<?php
 
 			}
