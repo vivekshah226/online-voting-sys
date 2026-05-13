@@ -127,13 +127,27 @@
 
 				<?php		
 					}
+					else if(isset($_GET['not_registered'])){
+				?>
+				
+				<span class="bg-white text-warning text-center my-3"> Sorry , you  are not registered! </span>
+
+				<?php		
+					}
+					else if(isset($_GET['invalid_access'])){
+				?>
+				
+				<span class="bg-white text-danger text-center my-3"> Invalid username or password! </span>
+
+				<?php		
+					}
 				
 				?>
 
 
 
 				
-			not_registered   invalid_access		
+			   		
 			</div>
 		</div>
 	</div>
@@ -195,11 +209,26 @@
 
 		 if($contact_no == $data['contact_no'] AND $password == $data['password']){
 
+			session_start();
+			$_SESSION['user_role'] = $data['user_role'];
+			$_SESSION['username'] = $data['username'];
+
+			if($data['user_role'] == "Admin"){
+				?>
+					<script> location.assign("admin/index.php"); </script>
+				<?php
+
+			}else{
+				?>
+					<script> location.assign("voter/index.php"); </script>
+				<?php
+
+			}
 
 
 		 }else {
 		?>
-			<script> location.assign("index.php?sign-up=1&invalid_access=1"); </script>
+			<script> location.assign("index.php?invalid_access=1"); </script>
 		<?php
 
 		 }
@@ -207,7 +236,7 @@
           
 	}else {
 	?>
-		<script> location.assign("index.php?sign-up=1&not_registered=1"); </script>
+		<script> location.assign("index.php?not_registered=1"); </script>
 	<?php
 
 	}
@@ -217,4 +246,4 @@
           
 
 
-?>          
+?>
