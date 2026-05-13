@@ -26,6 +26,6 @@
                 <img src="../assets/img/logo.png" alt="Logo" width="80px"/>
             </div>
             <div class="Col-11 my-auto">
-                <h3>Online Voting System <small>Welcome <?php echo $_SESSION['username']; ?> </small></h3>
+                <h3>Online Voting System  <small>Welcome <?php echo $_SESSION['username']; ?> </small></h3>
             </div>
         </div>
