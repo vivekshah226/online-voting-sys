@@ -85,7 +85,42 @@
             </tr>
         </thead>
         <tbody>
-            
+            <?php
+                $fetchingData = mysqli_query($db, "SELECT * FROM elections") or die(mysqli_error($db));
+                $isAnyElectionAdded = mysqli_num_rows ($fetchingData);
+
+                if($isAnyElectionAdded > 0)
+                {
+
+                    $sno = 1;
+                    while($row = mysqli_fetch_assoc($fetchingData))
+                    {        
+            ?>            
+                        <tr>
+                            <td> <?php echo $sno++; ?></td>
+                            <td> <?php echo $row['election_topic']; ?></td>
+                            <td> <?php echo $row['no_of_candidates']; ?></td>
+                            <td> <?php echo $row['starting_date']; ?></td>
+                            <td> <?php echo $row['ending_date']; ?></td>
+                            <td> <?php echo $row['status']; ?></td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-warning"> Edit </a>
+                                <a href="#" class="btn btn-sm btn-danger"> Delete </a>
+                            </td>
+                        </tr>  
+
+            <?php
+                    }
+                }else{
+        ?>
+                    <tr>
+                            <td colspan="7"> No any election  is added yet. </td>
+                    </tr>        
+        
+        <?php
+
+                }
+            ?>
         </tbody>
         </table>
     </div>
@@ -116,16 +151,10 @@ if(isset($_POST['addCandidateBtn']))
     if ($image_size <= 2097152) {
         if (in_array($candidate_photo_type, $allowed_types)) {
             if (move_uploaded_file($candidate_photo_tmp_name, $candidate_photo)) {
-                // sanitize before insert
-                $election_id_esc = mysqli_real_escape_string($db, $election_id);
-                $candidate_name_esc = mysqli_real_escape_string($db, $candidate_name);
-                $candidate_details_esc = mysqli_real_escape_string($db, $candidate_details);
-                $candidate_photo_esc = mysqli_real_escape_string($db, $candidate_photo);
-                $inserted_by_esc = mysqli_real_escape_string($db, $inserted_by);
-                $inserted_on_esc = mysqli_real_escape_string($db, $inserted_on);
-
-                $sql = "INSERT INTO candidate_details (election_id, candidate_name, candidate_details, candidate_photo, inserted_by, inserted_on) VALUES ('{$election_id_esc}','{$candidate_name_esc}','{$candidate_details_esc}','{$candidate_photo_esc}','{$inserted_by_esc}','{$inserted_on_esc}')";
-                mysqli_query($db, $sql) or die(mysqli_error($db));
+                mysqli_query($db, "INSERT INTO elections(election_topic, no_of_candidates, starting_date, ending_date,
+                status, inserted_by, inserted_on) VALUES('" . $election_topic . "','" . $number_of_candidates . "','" . 
+                $starting_date . "','" . $ending_date . "','" . $status . "','" . $inserted_by . "','" . $inserted_on . "')") or
+                die(mysqli_error($db));
                 echo "<script> location.assign('index.php?addCandidatePage=1&added=1');</script>";
             } else {
                 echo "<script> location.assign('index.php?addCandidatePage=1&failed=1');</script>";
