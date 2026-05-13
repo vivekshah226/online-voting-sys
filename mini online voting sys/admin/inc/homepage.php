@@ -35,8 +35,8 @@
                             <td> <?php echo $row['ending_date']; ?></td>
                             <td> <?php echo $row['status']; ?></td>
                             <td>
-                                <a href="index.php?viewResult=<?php" class=btn btn-sm btn-success">View Result </a>
-                                
+                                <a href="index.php?viewResult=<?php echo $election_id; ?>"class="btn btn-sm btn-success">View Result </a>
+                            </td>
                         </tr>  
 
             <?php
