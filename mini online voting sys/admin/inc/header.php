@@ -20,9 +20,13 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    ‹div class="container-fluid">
-        ‹div class="row">
-    <div class="Col-12"</div>
-</ div>
+    <div class="container-fluid">
+        <div class="row bg-black text-white">
+            <div class="Col-1 text-center">
+                <img src="../assets/img/logo.png" alt="Logo" width="80px"/>
+            </div>
+            <div class="Col-11"></div>
+        </div>
+    </div>
 </body>
 </html>
