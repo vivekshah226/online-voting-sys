@@ -15,7 +15,7 @@
 
     }else if (isset($_GET['addCandidatePage'])) 
     {
-        requre_once("inc/add_candidate.php") ;
+        require_once("inc/add_candidates.php") ;
     }
 ?>  
 
